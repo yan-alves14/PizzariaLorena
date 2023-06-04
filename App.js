@@ -9,17 +9,24 @@ import {
   Montserrat_700Bold,
 } from '@expo-google-fonts/montserrat';
 
-import HomePage from './src/Telas/Home/HomePage';
-import Sacolao from './src/telas/Sacolao';
-import Imagens from './src/telas/Imagens';
-import mock from './src/mocks/cesta';
-import Cardapio from './src/telas/Cardapio/Cardapio';
+//mock
+import pizza from './mock/pizzaCdp.js'
+
+//Pages
+import HomePage from './src/Telas/Home/HomePage.js';
+import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
 
 function MenuHome(){
   return <SafeAreaView>
-            <HomePage {...mock}/>
+            <HomePage/>
             <StatusBar/>
-         </SafeAreaView>;
+        </SafeAreaView>;
+}
+function MenuCardapio(){
+  return <SafeAreaView>
+            <Cardapio {...pizza}/>
+            <StatusBar/>
+        </SafeAreaView>;
 }
 
 const Tab = createBottomTabNavigator();
@@ -61,8 +68,10 @@ function TabsMenu(){
         })}
       >
         <Tab.Screen name="Home" component={MenuHome} /> 
-        <Tab.Screen name="Cardapio" component={Cardapio} />
-        <Tab.Screen name="Imagens" component={Imagens} /> 
+        <Tab.Screen name="Cardapio" component={MenuCardapio} /> 
+        
+        
+        {/* <Tab.Screen name="Imagens" component={Imagens} />  */}
       </Tab.Navigator>
   );
 }
