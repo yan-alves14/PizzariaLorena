@@ -11,12 +11,18 @@ export default function Item({item:{itens, precoO, precoProm}}){
 
 const estilos = StyleSheet.create({
     item:{
+        
+        justifyContent: "center",
         width:"80%",
         backgroundColor: "#C3C3C3",
         margin:"3%",
         padding:"2%",
         borderRadius: 10,
-
+        textAlign: "center"
+    },
+    nome: {
+        textAlign:"center",
+        fontSize: 10
     }
     // item: {
     //     flexDirection: "row",
@@ -25,9 +31,5 @@ const estilos = StyleSheet.create({
     //     padding: 16,
     //     alignItems: "center",
     // },
-    // nome: {
-    //     fontSize: 16,
-    //     lineHeight: 32,
-    //     marginLeft: 11,
-    // }
+    // 
 })

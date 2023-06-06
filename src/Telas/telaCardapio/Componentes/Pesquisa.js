@@ -15,7 +15,7 @@ function BarraPesquisa({ onPesquisa }) {
                 value={termoPesquisa}
                 onChangeText={setTermoPesquisa}
                 placeholder="Pesquisar..."
-                placeholderTextColor="lightgray"
+                placeholderTextColor="#b9b9b9"
             />
       {/* Adicione o ícone de pesquisa ou botão aqui */}
         </View>
@@ -24,7 +24,7 @@ function BarraPesquisa({ onPesquisa }) {
 
 const styles = StyleSheet.create({
     barraPesquisa: {
-        backgroundColor: 'lightgray',
+        backgroundColor: '#E4E4E4',
         borderRadius: 20,
         padding: 10,
         marginBottom: 10,

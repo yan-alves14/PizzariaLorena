@@ -5,8 +5,6 @@ import { FlatList, StyleSheet, ScrollView } from "react-native";
 import Texto from "../../ComponentesPadroes/Texto";
 
 // Componentes cardapio / botao, barra de pesquisa
-import btnRetira from "./Componentes/BotaoRetirar";
-import btnDelivery from "./Componentes/BotaoDelivery";
 import BarraPesquisa from "./Componentes/Pesquisa";
 import Item from "./Componentes/itemPromo";
 
