@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { ScrollView } from "react-native";
 
-import Texto from "../../Components/Texto";
 import Carrossel from "./Components/Carrossel";
 
 export default function HomePage() {
