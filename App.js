@@ -13,7 +13,7 @@ import {
 import pizza from './mock/pizzaCdp.js'
 
 //Pages
-import HomePage from './src/Telas/Home/HomePage.js';
+import HomePage from './src/Telas/Home/index.js';
 import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
 
 function MenuHome(){

@@ -2,13 +2,13 @@ import React from "react";
 import { FlatList, StyleSheet, ScrollView } from "react-native";
 
 //Componentes padroes
-import Texto from "../../ComponentesPadroes/Texto";
+import Texto from "../../Components/Texto";
 
 // Componentes cardapio / botao, barra de pesquisa
-import btnRetira from "./Componentes/BotaoRetirar";
-import btnDelivery from "./Componentes/BotaoDelivery";
-import BarraPesquisa from "./Componentes/Pesquisa";
-import Item from "./Componentes/itemPromo";
+import btnRetira from "./Components/BotaoRetirar";
+import btnDelivery from "./Components/BotaoDelivery";
+import BarraPesquisa from "./Components/Pesquisa";
+import Item from "./Components/itemPromo";
 
 
 export default function Cardapio({promocao, sabores}){
