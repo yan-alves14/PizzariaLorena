@@ -56,24 +56,3 @@ const estilos = StyleSheet.create({
   },
 });
 
-// export default function Cardapio({topo, detalhes, itens}){
-//     // return <ScrollView>
-//     //     <Topo {...topo}/>
-//     //     <Descricao {...detalhes}/>
-//     //     <Itens {...itens} />
-//     // </ScrollView>
-//     return <>
-//         <FlatList
-//             data={itens.lista}
-//             renderItem={Item}
-//             extractorKey={({nome})=>{nome}}
-//             ListHeaderComponent={()=>{
-//                 return <>
-//                     <Topo {...topo}/>
-//                     <Descricao {...detalhes}/>
-//                     <Texto style={estilos.titulo}>{itens.titulo}</Texto>
-//                 </>
-//             }}
-//         />
-//     </>
-// }
