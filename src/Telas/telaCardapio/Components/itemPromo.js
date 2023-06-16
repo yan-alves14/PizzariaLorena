@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column', 
     alignItems: 'flex-start',
     padding: '10%',
-
+    
   },
 });
