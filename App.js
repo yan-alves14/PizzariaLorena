@@ -9,16 +9,16 @@ import {
   Montserrat_700Bold,
 } from '@expo-google-fonts/montserrat';
 
-import pizzaIcon from '../PizzariaLorena/assets/tabIcons/pizza.png';
-import pizzaOutline from '../PizzariaLorena/assets/tabIcons/pizza-outline.png';
-import home from '../PizzariaLorena/assets/tabIcons/home.png';
-import homeOutline from '../PizzariaLorena/assets/tabIcons/home-outline.png';
-import chatbubbles from '../PizzariaLorena/assets/tabIcons/chatbubbles.png';
-import chatbubblesOutline from '../PizzariaLorena/assets/tabIcons/chatbubbles-outline.png';
-import person from '../PizzariaLorena/assets/tabIcons/person.png';
-import personOutline from '../PizzariaLorena/assets/tabIcons/person-outline.png';
-import ticket from '../PizzariaLorena/assets/tabIcons/ticket.png';
-import ticketOutline from '../PizzariaLorena/assets/tabIcons/ticket-outline.png';
+import pizzaIcon from './assets/tabIcons/pizza.png';
+import pizzaOutline from './assets/tabIcons/pizza-outline.png';
+import home from './assets/tabIcons/home.png';
+import homeOutline from './assets/tabIcons/home-outline.png';
+import chatbubbles from './assets/tabIcons/chatbubbles.png';
+import chatbubblesOutline from './assets/tabIcons/chatbubbles-outline.png';
+import person from './assets/tabIcons/person.png';
+import personOutline from './assets/tabIcons/person-outline.png';
+import ticket from './assets/tabIcons/ticket.png';
+import ticketOutline from './assets/tabIcons/ticket-outline.png';
 
 //mock
 import pizza from './mock/pizzaCdp.js'
