@@ -8,6 +8,8 @@ import Texto from "../../Components/Texto";
 import BarraPesquisa from "./Components/Pesquisa";
 import Item from "./Components/itemPromo";
 
+
+
 export default function Cardapio({ promocao, sabores }) {
   const handlePesquisa = (termoPesquisa) => {
     // Lógica de pesquisa aqui
@@ -17,16 +19,6 @@ export default function Cardapio({ promocao, sabores }) {
   const renderItem = ({ item }) => {
     return <Text>{item.nome}</Text>;
   };
-
-  // return<>
-  // <BarraPesquisa onPesquisa={handlePesquisa} />
-  // <FlatList
-  //     data={promocao.listaP}
-  //     renderItem={Item}
-  //     extractorKey={({nome})=>{nome}}
-
-  //     />
-  // </>
 
   return (
     <>
