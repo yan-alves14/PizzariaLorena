@@ -10,6 +10,8 @@ import IconPizza from "../../../assets/imgHome/icone_btn_retirar.png";
 import BotaoDelivery from "../Home/Components/BotaoDelivery.js";
 import BotaoRetirar from "../Home/Components/BotaoRetirar.js"
 
+import Texto from "../../Components/Texto";
+
 const { width } = Dimensions.get("window");
 
 export default function HomePage() {
@@ -23,6 +25,8 @@ export default function HomePage() {
   return (
     <ScrollView>
       <Carrossel data={carrosselItens} />
+      <View> 
+        <View/>
       <View style={estilos.spaceTOP}/>
       <View style={estilos.container}>
           <BotaoDelivery
@@ -41,6 +45,8 @@ export default function HomePage() {
         source={require("../../../assets/imgHome/Naturale-2.png")}
         style={{ width: width, height: width, marginTop: 30, marginBottom: 30 }}
       ></Image>
+
+      <Texto style={estilos.TextoDefault}>Para esta pergunta, temos uma simples resposta! A Pizzaria Lorena é uma das melhores da região, destacando-se pelo seu atendimento, tradição, qualidade e profissionalidade de seus funcionários. Como nosso próprio slogan diz, a melhor da cidade!</Texto>
       <View style={estilos.spaceTOP}/>
         
     </ScrollView>
@@ -59,5 +65,17 @@ const estilos = StyleSheet.create({
     },
     spaceTOP: {
       height: 30,
+    },
+    TextoDefault:{
+      margin: '5%',
+      textAlign: 'justify',
+      //marginHorizontal:'10%',
+    },
+    TextoTitle:{
+      marginLeft: '2%',
+      marginRight: '2%',
+      marginHorizontal:'10%',
+      fontSize: 22,
+      
     }
 })

@@ -54,11 +54,12 @@ const styles = StyleSheet.create({
   },
   preco: {
     alignItems: 'center',
-
-  }, precoContainer: {
+    fontSize: 20,
+  }, 
+  precoContainer: {
     flexDirection: 'column', 
     alignItems: 'flex-start',
     padding: '10%',
-
+    
   },
 });
