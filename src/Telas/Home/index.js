@@ -1,14 +1,14 @@
 import React from "react";
-import { ScrollView, Image, Dimensions } from "react-native";
+import { ScrollView, Image, Dimensions, StyleSheet, View } from "react-native";
 import Carrossel from "./Components/Carrossel";
 
-import BgDelivery from "../../../assets/fundo_btn.png"
-import BgRetirar from "../../../assets/fundo_btn.png"
-import IconMotoboy from "../../../assets/imgHome/icone_motoboy.png"
-import IconPizza from "../../../assets/imgHome/icone_btn_retirar.png"
+import BgDelivery from "../../../assets/imgHome/fundo_btn.png";
+import BgRetirar from "../../../assets/imgHome/fundo_btn.png";
+import IconMotoboy from "../../../assets/imgHome/icone_motoboy.png";
+import IconPizza from "../../../assets/imgHome/icone_btn_retirar.png";
 
-import BotaoDelivery from "../Home/Componentes/BotaoDelivery.js";
-import BotaoRetirar from "../Home/Componentes/BotaoRetirar.js"
+import BotaoDelivery from "../Home/Components/BotaoDelivery.js";
+import BotaoRetirar from "../Home/Components/BotaoRetirar.js"
 
 const { width } = Dimensions.get("window");
 
@@ -23,12 +23,8 @@ export default function HomePage() {
   return (
     <ScrollView>
       <Carrossel data={carrosselItens} />
-      <Image
-        source={require("../../../assets/imgHome/Naturale-2.png")}
-        style={{ width: width, height: width, marginTop: 30, marginBottom: 30 }}
-      ></Image>
       <View style={estilos.spaceTOP}/>
-        <View style={estilos.container}>
+      <View style={estilos.container}>
           <BotaoDelivery
           titulo="Prefiro delivery"
           textoSecundario="Receba em casa, com rapidez e qualidade"
@@ -41,6 +37,12 @@ export default function HomePage() {
           background={BgRetirar}
           icone={IconPizza}/>
     </View>
+      <Image
+        source={require("../../../assets/imgHome/Naturale-2.png")}
+        style={{ width: width, height: width, marginTop: 30, marginBottom: 30 }}
+      ></Image>
+      <View style={estilos.spaceTOP}/>
+        
     </ScrollView>
   );
 }
