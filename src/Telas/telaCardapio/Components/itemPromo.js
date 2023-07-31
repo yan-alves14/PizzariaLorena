@@ -1,40 +1,50 @@
 import React from "react";
-import { Image, View, StyleSheet } from "react-native";
+import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 
 import {LinearGradient} from 'expo-linear-gradient';
 import Texto from "../../../Components/Texto";
 
 export default function Item({ item: { itens, precoO, precoProm, imagem1, imagem2 } }) {
   return (
-    <LinearGradient
-      key={itens}
-      style={styles.itemPromo}
-      colors={['#d9d9d9', '#d9d9d9', '#F77600']}
-      locations={[0, 0.75, 1]}
-      start={{ x: 0, y: -1 }}
-      end={{ x: 0, y: 1 }}
-    >
-      <View>
-        {/* img e titulo promo */}
-        <View style={styles.imgs}>
-          <Image source={imagem1} style={styles.img1}></Image>
-          <Image source={imagem2} style={styles.img2}></Image>
+    <TouchableOpacity>
+      <LinearGradient
+        key={itens}
+        style={styles.itemPromo}
+        colors={['#d9d9d9', '#d9d9d9', '#F77600']}
+        locations={[0, 0.75, 1]}
+        start={{ x: 0, y: -1 }}
+        end={{ x: 0, y: 1 }}
+      >
+        <View>
+          {/* img e titulo promo */}
+          <View style={styles.imgs}>
+            <Image source={imagem1} style={styles.img1}></Image>
+            <Image source={imagem2} style={styles.img2}></Image>
+          </View>
+          <Texto style={styles.promocao}>{itens}</Texto>
         </View>
-        <Texto style={styles.promocao}>{itens}</Texto>
-      </View>
-      <View style={styles.precoContainer}>
-        <Texto style={styles.preco}>{precoO}</Texto>
-        <Texto style={styles.precopromo}>{precoProm}</Texto>
-      </View>
-    </LinearGradient>
+        <View style={styles.precoContainer}>
+          <Texto style={styles.preco}>{precoO}</Texto>
+          <Texto style={styles.precopromo}>{precoProm}</Texto>
+        </View>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  touchAble:{
+    borderRadius: 10,
+    opacity: 1,
+  },
   itemPromo: {
     width: '90%',
     margin: '3%',
     borderRadius: 10,
+    borderWidth: 1,
+    //elevation: 3,
+    borderColor:  'gray',
+    //borderColor: '',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     padding: '1%',
@@ -64,13 +74,13 @@ const styles = StyleSheet.create({
 
   preco: {
     alignItems: 'center',
-    fontSize: 25,
+    fontSize: 16,
     color: "#F77600",
    // padding: '10%',
   },
   precopromo: {
     alignItems: 'center',
-    fontSize: 25,
+    fontSize: 16,
     color: "#BC0B0B",
     marginTop: "65%",
     //padding: '20%',

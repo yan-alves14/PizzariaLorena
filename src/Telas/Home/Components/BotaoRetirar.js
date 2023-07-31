@@ -22,7 +22,7 @@ export default function btnRetirar({ titulo, textoSecundario, icone, background,
 
   const estilos = StyleSheet.create({
     button: {
-      width: 290,
+      width: 330,
       height: 100,
       borderRadius: 25,
       overflow: 'hidden',
