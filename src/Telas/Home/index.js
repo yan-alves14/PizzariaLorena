@@ -25,9 +25,10 @@ export default function HomePage() {
   return (
     <ScrollView>
       <Carrossel data={carrosselItens} />
-      <View> 
-        <View/>
       <View style={estilos.spaceTOP}/>
+      <Texto style={estilos.TextoTitle}>Bem Vindo!</Texto>
+    
+      <Texto style={estilos.TextoDefault}>Escolha sua forma de compra:</Texto>
       <View style={estilos.container}>
           <BotaoDelivery
           titulo="Prefiro delivery"
@@ -46,7 +47,7 @@ export default function HomePage() {
         style={{ width: width, height: width, marginTop: 30, marginBottom: 30 }}
       ></Image>
 
-      <Texto style={estilos.TextoDefault}>Para esta pergunta, temos uma simples resposta! A Pizzaria Lorena é uma das melhores da região, destacando-se pelo seu atendimento, tradição, qualidade e profissionalidade de seus funcionários. Como nosso próprio slogan diz, a melhor da cidade!</Texto>
+      <Texto style={estilos.TextoDefault}>A Pizzaria Lorena é uma das melhores da região, destacando-se pelo seu atendimento, tradição, qualidade e profissionalidade de seus funcionários. Como nosso próprio slogan diz, a melhor da cidade!</Texto>
       <View style={estilos.spaceTOP}/>
         
     </ScrollView>
@@ -69,6 +70,9 @@ const estilos = StyleSheet.create({
     TextoDefault:{
       margin: '5%',
       textAlign: 'justify',
+      paddingLeft: 28,
+      fontSize: 17,
+      color: '#808080'
       //marginHorizontal:'10%',
     },
     TextoTitle:{
@@ -76,6 +80,7 @@ const estilos = StyleSheet.create({
       marginRight: '2%',
       marginHorizontal:'10%',
       fontSize: 22,
-      
+      paddingLeft: 35,
+      fontWeight:'bold',
     }
 })
