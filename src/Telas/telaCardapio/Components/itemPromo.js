@@ -4,7 +4,7 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import Texto from "../../../Components/Texto";
 
-export default function Item({ item: { itens, precoO, precoProm, imagem1, imagem2 } }) {
+export default function Item({ item: { itens, precoO, precoProm, imagem1, imagem2, xICon } }) {
   return (
     <TouchableOpacity>
       <LinearGradient
@@ -24,6 +24,7 @@ export default function Item({ item: { itens, precoO, precoProm, imagem1, imagem
           <Texto style={styles.promocao}>{itens}</Texto>
         </View>
         <View style={styles.precoContainer}>
+          <Texto style={styles.xItem}>{xICon}</Texto>
           <Texto style={styles.preco}>{precoO}</Texto>
           <Texto style={styles.precopromo}>{precoProm}</Texto>
         </View>
@@ -36,6 +37,14 @@ const styles = StyleSheet.create({
   touchAble:{
     borderRadius: 10,
     opacity: 1,
+  },
+  xItem:{
+    position: 'absolute',
+    top: 16,
+    left: 50,
+    fontSize: 45,
+    color:'red',
+    transform: [{ rotate: '90deg' }],
   },
   itemPromo: {
     width: '90%',
@@ -52,14 +61,15 @@ const styles = StyleSheet.create({
   promocao: {
     // flex: 1,
     // flexShrink: 1,
-    marginLeft: '20%',
-    paddingHorizontal: '15%',
+    marginLeft: '38%',
+    paddingHorizontal: '8%',
     textAlign: 'center',
     fontSize: 14,
   },
   imgs: {
     flexDirection: 'row',
     transform: [{ scale: 0.8 }],
+    marginLeft: '20%',
   },
   img1: {
     flexDirection: 'row',
@@ -74,13 +84,13 @@ const styles = StyleSheet.create({
 
   preco: {
     alignItems: 'center',
-    fontSize: 16,
+    fontSize: 22,
     color: "#F77600",
    // padding: '10%',
   },
   precopromo: {
     alignItems: 'center',
-    fontSize: 16,
+    fontSize: 22,
     color: "#BC0B0B",
     marginTop: "65%",
     //padding: '20%',

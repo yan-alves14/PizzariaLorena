@@ -14,6 +14,7 @@ const pizza = {
                 itens: "PIZZA GRANDE DE PEPERONI + DOLLY 2L", 
                 imagem1: dolly,
                 imagem2: pepperoni,
+                xICon: "X",
                 precoO: "44,99",
                 precoProm: "34,99"
             },
@@ -21,19 +22,22 @@ const pizza = {
                 itens: "2 PIZZAS GRANDES - ESCOLHA OS SABORES", 
                 imagem1: pepperoni,
                 imagem2: atum,
+                xICon: "X",
                 precoO: "69,99",
                 precoProm: "64,99"
-            },
+            }, 
             {
                 itens: "2 PIZZAS GRANDES DOCE", 
                 imagem1: sensacao,
                 imagem2: chocolate,
+                xICon: "X",
                 precoO: "79,99",
                 precoProm: "69,99"
             },
             {
                 itens: "PIZZA PEPPERONI", 
                 imagem1: pepperoni,
+                xICon: "X",
                 precoO: "39,99",
                 precoProm: "29,99"
             }
