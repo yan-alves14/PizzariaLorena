@@ -69,31 +69,8 @@ function TabsMenu(){
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconSource;
-
-          /*if (route.name === 'Home') {
-              iconName = focused
-                ? 'home'
-                : 'home-outline';
-            } else if (route.name === 'Cardapio') {
-              iconName = focused 
-                ? 'pizza' 
-                : 'pizza-outline';
-            } else if (route.name === 'Cupons') {
-              iconName = focused 
-                ? 'ticket' 
-                : 'ticket-outline';
-            } else if (route.name === 'Contato') {
-              iconName = focused 
-                ? 'chatbubbles' 
-                : 'chatbubbles-outline';
-            } else if (route.name === 'Perfil') {
-              iconName = focused 
-                ? 'person' 
-                : 'person-outline';
-            }
-
             // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />; */
+            //return <Ionicons name={iconName} size={size} color={color} />; 
             if (route.name === 'Home') {
               iconSource = focused ? home : homeOutline;
             } else if (route.name === 'Cardapio') {
@@ -117,9 +94,9 @@ function TabsMenu(){
       >
         <Tab.Screen name="Home" component={MenuHome} /> 
         <Tab.Screen name="Cardapio" component={MenuCardapio} />
-        {/* <Tab.Screen name="Cupons" component={MenuCupons} />
-        <Tab.Screen name="Contato" component={MenuContato} />
-        <Tab.Screen name="Perfil" component={MenuPerfil} /> */}
+        {/*<Tab.Screen name="Cupons" component={MenuCupons} />
+        <Tab.Screen name="Contato" component={MenuContato} />*/}
+        <Tab.Screen name="Perfil" component={MenuPerfil} /> 
       </Tab.Navigator>
   );
 }
