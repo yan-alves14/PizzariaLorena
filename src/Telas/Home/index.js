@@ -9,6 +9,7 @@ import IconPizza from "../../../assets/imgHome/icone_btn_retirar.png";
 
 import BotaoDelivery from "../Home/Components/BotaoDelivery.js";
 import BotaoRetirar from "../Home/Components/BotaoRetirar.js"
+import BotaoBanner from "./Components/BotaoBanner";
 
 import Texto from "../../Components/Texto";
 
@@ -52,6 +53,11 @@ export default function HomePage() {
       <View style={estilos.Separator} />
       <Text style={estilos.QuestionTitle}>Agora Mesmo!</Text>
       <Texto style={estilos.Subtitle}>Agora que você sabe quem somos, aproveite e e peça nossa deliciosa pizza!</Texto>
+      <BotaoBanner
+        titulo="TESTE"
+        textoPreto="OI"
+        
+      />
     </ScrollView>
   );
 }
