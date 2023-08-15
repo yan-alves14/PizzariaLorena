@@ -70,7 +70,6 @@ const estilos = StyleSheet.create({
     TextoDefault:{
       margin: '5%',
       textAlign: 'justify',
-      paddingLeft: 28,
       fontSize: 17,
       color: '#808080'
       //marginHorizontal:'10%',
