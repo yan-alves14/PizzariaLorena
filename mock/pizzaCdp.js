@@ -69,25 +69,4 @@ const pizza = {
     }
 }
 
-const produtos = [
-    {
-        id: 1,
-        nome: "CESTAS INVERNO",
-        preco: 98.21,
-        descrica: "CEsta de frutas tipicas do inverno!",
-    
-    },
-    {
-        id: 2,
-        nome: "CESTAS VERÃO",
-        preco: 38.21,
-        descrica: "Cesta de frutas tipicas do verao!",
-    },
-    {
-        id: 3,
-        nome: "CESTAS ESTAÇÕES",
-        preco: 67.21,
-        descrica: "Cesta de frutas tipicas da estação vigente",
-    }
-    ];
 export default pizza;
