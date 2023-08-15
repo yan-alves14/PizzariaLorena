@@ -11,6 +11,7 @@ const pizza = {
     promocao:{
         listaP: [
             {
+                id: 1,
                 itens: "PIZZA GRANDE DE PEPERONI + DOLLY 2L", 
                 imagem1: dolly,
                 imagem2: pepperoni,
@@ -19,6 +20,7 @@ const pizza = {
                 precoProm: "34,99"
             },
             {
+                id: 2,
                 itens: "2 PIZZAS GRANDES - ESCOLHA OS SABORES", 
                 imagem1: pepperoni,
                 imagem2: atum,
@@ -27,6 +29,7 @@ const pizza = {
                 precoProm: "64,99"
             }, 
             {
+                id: 3,
                 itens: "2 PIZZAS GRANDES DOCE", 
                 imagem1: sensacao,
                 imagem2: chocolate,
@@ -35,6 +38,7 @@ const pizza = {
                 precoProm: "69,99"
             },
             {
+                id: 4,
                 itens: "PIZZA PEPPERONI", 
                 imagem1: pepperoni,
                 xICon: "X",
@@ -64,4 +68,26 @@ const pizza = {
         ]
     }
 }
+
+const produtos = [
+    {
+        id: 1,
+        nome: "CESTAS INVERNO",
+        preco: 98.21,
+        descrica: "CEsta de frutas tipicas do inverno!",
+    
+    },
+    {
+        id: 2,
+        nome: "CESTAS VERÃO",
+        preco: 38.21,
+        descrica: "Cesta de frutas tipicas do verao!",
+    },
+    {
+        id: 3,
+        nome: "CESTAS ESTAÇÕES",
+        preco: 67.21,
+        descrica: "Cesta de frutas tipicas da estação vigente",
+    }
+    ];
 export default pizza;
