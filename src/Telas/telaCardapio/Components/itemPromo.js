@@ -4,11 +4,11 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import Texto from "../../../Components/Texto";
 
-export default function Item({ item: { itens, precoO, precoProm, imagem1, imagem2, xICon } }) {
+export default function Item({ item: { id, itens, precoO, precoProm, imagem1, imagem2, xICon } }) {
   return (
     <TouchableOpacity>
       <LinearGradient
-        key={itens}
+        key={id}
         style={styles.itemPromo}
         colors={['#d9d9d9', '#d9d9d9', '#F77600']}
         locations={[0, 0.75, 1]}

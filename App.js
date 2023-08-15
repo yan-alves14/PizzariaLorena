@@ -94,7 +94,9 @@ function TabsMenu(){
       >
         <Tab.Screen name="Home" component={MenuHome} /> 
         <Tab.Screen name="Cardapio" component={MenuCardapio} />
-        {/*<Tab.Screen name="Cupons" component={MenuCupons} />
+        {/*<Tab.Screen name="Cupons" component={MenuCupons} options={{
+        tabBarIcon: ({ focused, color, size }) => (
+          <Image source={require('./path-to-your-image.png')} style={{ width: size, height: size, tintColor: color }}/>
         <Tab.Screen name="Contato" component={MenuContato} />*/}
         <Tab.Screen name="Perfil" component={MenuPerfil} /> 
       </Tab.Navigator>
