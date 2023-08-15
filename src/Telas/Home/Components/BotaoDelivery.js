@@ -20,7 +20,7 @@ export default function btnDelivery({ titulo, textoSecundario, icone, background
 
 const styles = StyleSheet.create({
   button: {
-    width: 330,
+    width: "90%",
     height: 100,
     borderRadius: 25,
     overflow: 'hidden',
