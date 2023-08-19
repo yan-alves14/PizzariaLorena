@@ -2,7 +2,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
-import {SafeAreaView, View, Image } from 'react-native';
+import { SafeAreaView, View, Image} from 'react-native';
 import {
   useFonts,
   Montserrat_400Regular,
@@ -23,6 +23,9 @@ import ticketOutline from './assets/tabIcons/ticket-outline.png';
 //mock
 import pizza from './mock/pizzaCdp.js'
 
+//Header
+import Header from './src/Components/Header';
+
 //Pages
 import HomePage from './src/Telas/Home/index.js';
 import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
@@ -30,6 +33,7 @@ import Cupom from './src/Telas/telaCupom/Cupom.js';
 import Contato from './src/Telas/telaContato/Contato.js';
 import Perfil from './src/Telas/telaPerfil/Perfil.js';
 import { GreatVibes_400Regular } from '@expo-google-fonts/great-vibes';
+
 
 function MenuHome(){
   return <SafeAreaView>
@@ -60,43 +64,50 @@ function MenuPerfil(){
 const Tab = createBottomTabNavigator();
 
 function TabsMenu(){
-  return(
+  return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconSource;
-            // You can return any component that you like here!
-            //return <Ionicons name={iconName} size={size} color={color} />; 
-            if (route.name === 'Home') {
-              iconSource = focused ? home : homeOutline;
-            } else if (route.name === 'Cardapio') {
-              iconSource = focused ? pizzaIcon : pizzaOutline ;
-            } else if (route.name === 'Cupons') {
-              iconSource = focused ? ticket : ticketOutline ;
-            } else if (route.name === 'Contato') {
-              // Substitua pelo ícone personalizado correspondente
-              iconSource = focused ? chatbubbles : chatbubblesOutline ;
-            } else if (route.name === 'Perfil') {
-              // Substitua pelo ícone personalizado correspondente
-              iconSource = focused ? person : personOutline ;
-            }
-          
-            // Renderiza a imagem personalizada
-            return <Image source={iconSource} style={{ width: size, height: size, tintColor: color }} />; 
-          },
-          tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: 'gray',
-        })}
-      >
-        <Tab.Screen name="Home" component={MenuHome} /> 
-        <Tab.Screen name="Cardapio" component={MenuCardapio} />
-        {/*<Tab.Screen name="Cupons" component={MenuCupons} options={{
+        header: () => <Header/>,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconSource;
+          // You can return any component that you like here!
+          //return <Ionicons name={iconName} size={size} color={color} />;
+          if (route.name === "Home") {
+            iconSource = focused ? home : homeOutline;
+          } else if (route.name === "Cardapio") {
+            iconSource = focused ? pizzaIcon : pizzaOutline;
+          } else if (route.name === "Cupons") {
+            iconSource = focused ? ticket : ticketOutline;
+          } else if (route.name === "Contato") {
+            // Substitua pelo ícone personalizado correspondente
+            iconSource = focused ? chatbubbles : chatbubblesOutline;
+          } else if (route.name === "Perfil") {
+            // Substitua pelo ícone personalizado correspondente
+            iconSource = focused ? person : personOutline;
+          }
+          // Renderiza a imagem personalizada
+          return (
+            <Image
+              source={iconSource}
+              style={{ width: size, height: size, tintColor: color }}
+            />
+          );
+        },
+        tabBarActiveTintColor: "#B82C21",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={MenuHome}
+      />
+      <Tab.Screen name="Cardapio" component={MenuCardapio} />
+      {/*<Tab.Screen name="Cupons" component={MenuCupons} options={{
         tabBarIcon: ({ focused, color, size }) => (
           <Image source={require('./path-to-your-image.png')} style={{ width: size, height: size, tintColor: color }}/>
         <Tab.Screen name="Contato" component={MenuContato} />*/}
-        <Tab.Screen name="Perfil" component={MenuPerfil} /> 
-      </Tab.Navigator>
+      <Tab.Screen name="Perfil" component={MenuPerfil} />
+    </Tab.Navigator>
   );
 }
 
