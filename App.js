@@ -2,7 +2,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
-import { StatusBar, SafeAreaView, View, Image } from 'react-native';
+import {SafeAreaView, View, Image } from 'react-native';
 import {
   useFonts,
   Montserrat_400Regular,
@@ -34,32 +34,27 @@ import { GreatVibes_400Regular } from '@expo-google-fonts/great-vibes';
 function MenuHome(){
   return <SafeAreaView>
             <HomePage/>
-            <StatusBar/>
         </SafeAreaView>;
 }
 function MenuCardapio(){
   return <SafeAreaView>
             <Cardapio {...pizza}/>
-            <StatusBar/>
         </SafeAreaView>;
 }
 function MenuContato(){
   return <SafeAreaView>
           <Contato/>
-          <StatusBar/>
         </SafeAreaView>
 }
 
 function MenuCupons(){
   return <SafeAreaView>
           <Cupom/>
-          <StatusBar/>
         </SafeAreaView>
 }
 function MenuPerfil(){
   return <SafeAreaView>
           <Perfil/>
-          <StatusBar/>
         </SafeAreaView>
 }
 const Tab = createBottomTabNavigator();
@@ -67,7 +62,8 @@ const Tab = createBottomTabNavigator();
 function TabsMenu(){
   return(
     <Tab.Navigator
-        screenOptions={({ route }) => ({
+      screenOptions={({ route }) => ({
+          headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconSource;
             // You can return any component that you like here!
