@@ -6,9 +6,12 @@ import BgDelivery from "../../../assets/imgHome/fundo_btn.png";
 import BgRetirar from "../../../assets/imgHome/fundo_btn.png";
 import IconMotoboy from "../../../assets/imgHome/icone_motoboy.png";
 import IconPizza from "../../../assets/imgHome/icone_btn_retirar.png";
+import IconHalfButton1 from "../../../assets/imgHome/imgHalfButton1.jpg"
+import IconHalfButton2 from "../../../assets/imgHome/imgHalfButton2.jpg"
 
 import BotaoDelivery from "../Home/Components/BotaoDelivery.js";
 import BotaoRetirar from "../Home/Components/BotaoRetirar.js"
+import BotaoBanner from "./Components/BotaoBanner";
 
 import Texto from "../../Components/Texto";
 
@@ -25,33 +28,56 @@ export default function HomePage() {
   return (
     <ScrollView>
       <Carrossel data={carrosselItens} />
-      <View style={estilos.spaceTOP}/>
+      <View style={estilos.spaceTOP} />
       <Texto style={estilos.TextoTitle}>Bem Vindo!</Texto>
-    
+
       <Texto style={estilos.TextoDefault}>Escolha sua forma de compra:</Texto>
       <View style={estilos.container}>
-          <BotaoDelivery
+        <BotaoDelivery
           titulo="Prefiro delivery"
           textoSecundario="Receba em casa, com rapidez e qualidade"
           background={BgDelivery}
-          icone={IconMotoboy}/>
-        <View style={estilos.spaceBOT}/>
-          <BotaoRetirar
+          icone={IconMotoboy}
+        />
+        <View style={estilos.spaceBOT} />
+        <BotaoRetirar
           titulo="Prefiro retirar"
           textoSecundario="Faça seu pedido e retire em nossa loja."
           background={BgRetirar}
-          icone={IconPizza}/>
-    </View>
+          icone={IconPizza}
+        />
+      </View>
       <Image
         source={require("../../../assets/imgHome/Naturale-2.png")}
-        style={{ width: width, height: width, marginTop: 30}}
+        style={{ width: width, height: width, marginTop: 30 }}
       ></Image>
       <View style={estilos.Separator} />
       <Text style={estilos.QuestionTitle}>Por que a Pizzaria Lorena?</Text>
-      <Texto style={estilos.TextoDefault}>A Pizzaria Lorena é uma das melhores da região, destacando-se pelo seu atendimento, tradição, qualidade e profissionalidade de seus funcionários. Como nosso próprio slogan diz, a melhor da cidade!</Texto>
+      <Texto style={estilos.TextoDefault}>
+        A Pizzaria Lorena é uma das melhores da região, destacando-se pelo seu
+        atendimento, tradição, qualidade e profissionalidade de seus
+        funcionários. Como nosso próprio slogan diz, a melhor da cidade!
+      </Texto>
       <View style={estilos.Separator} />
       <Text style={estilos.QuestionTitle}>Agora Mesmo!</Text>
-      <Texto style={estilos.Subtitle}>Agora que você sabe quem somos, aproveite e e peça nossa deliciosa pizza!</Texto>
+      <Texto style={estilos.Subtitle}>
+        Agora que você sabe quem somos, aproveite e e peça nossa deliciosa
+        pizza!
+      </Texto>
+      <BotaoBanner
+        titulo="Confira nossas promoções!"
+        textoPreto="Temos promoções"
+        textoLaranja="de segunda a quinta!"
+        imagem={IconHalfButton1}
+      />
+      <View style={estilos.spaceBOT}/>
+      <BotaoBanner
+        titulo="Use seu cupom!"
+        textoPreto="Cupons de desconto para"
+        textoLaranja="primeira compra e clientes fiéis!"
+        imagem={IconHalfButton2}
+      />
+      <View style={estilos.spaceBOT}/>
     </ScrollView>
   );
 }
@@ -64,7 +90,7 @@ const estilos = StyleSheet.create({
     justifyContent: 'center',
   },
   spaceBOT:{
-    height: 16,
+    height: 30,
   },
   spaceTOP: {
     height: 30,
