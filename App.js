@@ -8,6 +8,7 @@ import {
   Montserrat_400Regular,
   Montserrat_700Bold,
 } from '@expo-google-fonts/montserrat';
+import { GreatVibes_400Regular } from '@expo-google-fonts/great-vibes';
 
 import pizzaIcon from './assets/tabIcons/pizza.png';
 import pizzaOutline from './assets/tabIcons/pizza-outline.png';
@@ -29,7 +30,6 @@ import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
 import Cupom from './src/Telas/telaCupom/Cupom.js';
 import Contato from './src/Telas/telaContato/Contato.js';
 import Perfil from './src/Telas/telaPerfil/Perfil.js';
-import { GreatVibes_400Regular } from '@expo-google-fonts/great-vibes';
 
 function MenuHome(){
   return <SafeAreaView>
