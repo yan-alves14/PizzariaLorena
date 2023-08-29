@@ -22,7 +22,7 @@ import ticketOutline from './assets/tabIcons/ticket-outline.png';
 
 //mock
 import pizza from './mock/pizzaCdp.js'
-
+import perfil from './mock/itensPerfil.js'
 //Pages
 import HomePage from './src/Telas/Home/index.js';
 import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
@@ -57,7 +57,7 @@ function MenuCupons(){
 }
 function MenuPerfil(){
   return <SafeAreaView>
-          <Perfil/>
+          <Perfil {...perfil}/>
           <StatusBar/>
         </SafeAreaView>
 }
