@@ -29,6 +29,7 @@ import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
 import Cupom from './src/Telas/telaCupom/Cupom.js';
 import Contato from './src/Telas/telaContato/Contato.js';
 import Perfil from './src/Telas/telaPerfil/Perfil.js';
+import { GreatVibes_400Regular } from '@expo-google-fonts/great-vibes';
 
 function MenuHome(){
   return <SafeAreaView>
@@ -108,7 +109,8 @@ export default function App() {
 //Fonte utilizada para o projeto
 const [ fonteCarregada ] = useFonts({
   "MontSerratRegular" : Montserrat_400Regular,
-  "MontSerratBold" : Montserrat_700Bold,
+  "MontSerratBold": Montserrat_700Bold,
+  "GreatVibes": GreatVibes_400Regular,
 });
 
   //Checa se as fontes já foram carregadas antes de exibir no APP
