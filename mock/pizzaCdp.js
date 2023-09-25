@@ -50,21 +50,40 @@ const pizza = {
     sabores:{
         listaS: [
             {
-                sabor: "Pizza de Pepperoni",
-                //imagem: "",
+                id: 1,
+                nome: "Pizza de Pepperoni",
+                preco: 49.9,
+                descricao: "Pizza de pepperoni com mussarela!",
+                imagem: pepperoni,
             },
             {
-                sabor: "Pizza de atum com cebola",
-                //imagem: "",
+                id: 2,
+                nome: "Pizza de atum com cebola",
+                preco: 30.9,
+                descricao: "Atum ralado com cebola e mussarela!",
+                imagem: atum,
             },
             {
-                sabor: "Pizza de chocolate com morango",
-                //imagem: "",
+                id: 3,
+                nome: "Pizza de chocolate com morango",
+                preco: 50.0,
+                descricao: "Pizza de sensação!",
+                imagem: sensacao,
             },
             {
-                sabor: "Pizza de chocolate com morango",
-                //imagem: "",
+                id: 4,
+                nome: "Pizza de chocolate",
+                preco: 47.30,
+                descricao: "Pizza de chocolate!",
+                imagem: chocolate,
             },
+            {
+                id: 5,
+                nome: "Pizza de Frango",
+                preco: 34.9,
+                descricao: "Frango com catupiry e cebola!",
+                imagem: frango
+            }
         ]
     }
 }

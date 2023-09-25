@@ -15,8 +15,6 @@ function BarraPesquisa({ onPesquisa }) {
         if(!verificaInteiro) return;
     }
 
-    const nroTexto = String(valor);
-
     return (
         <View style={styles.barraPesquisa}>
             <Image source={lupa} style={styles.iconeLupa}></Image>

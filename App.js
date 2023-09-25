@@ -2,7 +2,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
-import { SafeAreaView, View, Image} from 'react-native';
+import { SafeAreaView, View, Image, StatusBar} from 'react-native';
 import {
   useFonts,
   Montserrat_400Regular,
@@ -24,18 +24,18 @@ import ticketOutline from './assets/tabIcons/ticket-outline.png';
 //mock
 import pizza from './mock/pizzaCdp.js'
 
-
-//Header
 import Header from './src/Components/Header';
 
 import perfil from './mock/itensPerfil.js'
+
 //Pages
 import HomePage from './src/Telas/Home/index.js';
 import Cardapio from './src/Telas/telaCardapio/Cardapio.js';
+import Produtos from './src/Telas/telaCardapio/TelaProdutos/Produtos';
 import Cupom from './src/Telas/telaCupom/Cupom.js';
 import Contato from './src/Telas/telaContato/Contato.js';
 import Perfil from './src/Telas/telaPerfil/Perfil.js';
-
+import Desejos from './src/Telas/telaDesejos/Produtos';
 
 function MenuHome(){
   return <SafeAreaView>
@@ -60,11 +60,19 @@ function MenuCupons(){
 }
 function MenuPerfil(){
   return <SafeAreaView>
-
           <Perfil {...perfil}/>
           <StatusBar/>
         </SafeAreaView>
 }
+
+
+function MenuCarrinho(){
+  return <SafeAreaView>
+          <Desejos /> 
+          <StatusBar/>
+        </SafeAreaView>
+}
+
 const Tab = createBottomTabNavigator();
 
 function TabsMenu(){
@@ -88,7 +96,16 @@ function TabsMenu(){
           } else if (route.name === "Perfil") {
             // Substitua pelo ícone personalizado correspondente
             iconSource = focused ? person : personOutline;
-          }
+          } else if (route.name === "TesteTelaSoProdutos") {
+            // Substitua pelo ícone personalizado correspondente
+            iconSource = focused ? ticket : ticketOutline;
+          } else if (route.name === "TesteTelaSoDesejo") {
+            // Substitua pelo ícone personalizado correspondente
+            iconSource = focused ? ticket : ticketOutline;
+          } 
+
+
+
           // Renderiza a imagem personalizada
           return (
             <Image
@@ -101,16 +118,15 @@ function TabsMenu(){
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen
-        name="Home"
-        component={MenuHome}
-      />
+      <Tab.Screen name="Home" component={MenuHome} />
       <Tab.Screen name="Cardapio" component={MenuCardapio} />
       {/*<Tab.Screen name="Cupons" component={MenuCupons} options={{
         tabBarIcon: ({ focused, color, size }) => (
           <Image source={require('./path-to-your-image.png')} style={{ width: size, height: size, tintColor: color }}/>
         <Tab.Screen name="Contato" component={MenuContato} />*/}
       <Tab.Screen name="Perfil" component={MenuPerfil} />
+      <Tab.Screen name="TesteTelaSoDesejo" component={MenuCarrinho} />
+
     </Tab.Navigator>
   );
 }
