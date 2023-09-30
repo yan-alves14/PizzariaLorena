@@ -87,7 +87,7 @@ export default function HomePage() {
         />
         
       </View>
-      <Button style={styles.btnPlayStop} title={status.isPlaying ? 'Pause' : 'Play'} onPress={() => 
+      <Button color="#ffa841" title={status.isPlaying ? 'Pause' : 'Play'} onPress={() => 
           status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()}
         />
       <View style={styles.Separator} />
@@ -116,10 +116,6 @@ export default function HomePage() {
 }
 
 const styles = StyleSheet.create({
-  btnPlayStop:{
-    backgroundColor: '#ffa841',
-    color: '#ffa841',
-  },
   container: {
     flex: 1,
     flexDirection: 'column',

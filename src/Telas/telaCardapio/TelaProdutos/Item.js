@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Image, TextInput, Button, TouchableOpacity, StyleSheet } from "react-native";
 import { Audio } from  'expo-av';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Texto from "../../../Components/Texto";
 import CampoInteiro from "../../../Components/CampoInteiro";
@@ -28,7 +28,62 @@ export default function Item ({nome, descricao, preco, imagem}){
         setExpandir(!expandir);
         atualizaQtdeTotal(1);
     }
+    async function salveStorage(quantidade){
+        let pedidos = [];
+        try 
+        {
+            // Obter a lista atual de pedidos do AsyncStorage
+            const pedidosAntigos = await AsyncStorage.getItem('pedidos');
+            if(pedidosAntigos){
+                pedidos.push(JSON.parse(pedidosAntigos));
+            } 
+            console.log(pedidos.length);
+            console.log(pedidos);
 
+            if( pedidos )
+            {
+
+                let ultimoPedido = pedidos.find();
+                let ultimoPedidoId = ultimoPedido.id;
+
+                console.log(ultimoPedido);
+                console.log(ultimoPedidoId);
+
+                let pedido ={
+                    id: ultimoPedidoId + 1,
+                    nome: nome,
+                    preco: preco,
+                    descricao: descricao,
+                    qtde: quantidade,
+                }
+                // Adicionar o novo pedido à lista
+                pedidos.push(pedido);
+                
+                console.log(pedidos);
+                    // Salvar a lista atualizada de pedidos no AsyncStorage
+                //await AsyncStorage.setItem('pedidos', JSON.stringify(pedidos));
+                console.log('Pedido salvo com sucesso!');
+                }
+                else
+                {
+                    let pedidoNw ={
+                        id: 1,
+                        nome: nome,
+                        preco: preco,
+                        descricao: descricao,
+                        qtde: quantidade,
+                    }
+                    console.log(pedidoNw);
+                    // await AsyncStorage.setItem('pedidos', JSON.stringify(pedidoNw));
+            }
+        } catch (error) {
+            console.error('Erro ao salvar o pedido:', error);
+        }
+
+        const veja = await AsyncStorage.getItem('pedidos');
+        const jj = pedidosAntigos ? JSON.parse(pedidosAntigos) : [];
+        console.log(jj);
+    };
 
     useEffect (() => 
     {
@@ -72,7 +127,7 @@ export default function Item ({nome, descricao, preco, imagem}){
                 <Texto>Total </Texto>
                 <Texto>{ Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(total) }</Texto>
             </View>
-            <Button title="Adicionar" onPress={()=>setAudioStatus(!audioStatus)}/>
+            <Button title="Adicionar" onPress={()=>{setAudioStatus(!audioStatus); salveStorage(quantidade);}}/>
         </View>
         }
         <View style={estilos.divisor}/>
