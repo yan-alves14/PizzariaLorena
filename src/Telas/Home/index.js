@@ -1,7 +1,5 @@
 import React from "react";
-import { ScrollView, Image, Dimensions, StyleSheet, View, Text } from "react-native";
-import React, { useRef } from "react";
-import { ScrollView, Image, Dimensions, StyleSheet, View, Button } from "react-native";
+import { ScrollView, Image, Dimensions, StyleSheet, View, Text, Button } from "react-native";
 import {Video, ResizeMode} from 'expo-av'
 import Carrossel from "./Components/Carrossel";
 
@@ -76,26 +74,24 @@ export default function HomePage() {
         textoLaranja="de segunda a quinta!"
         imagem={IconHalfButton1}
       />
-      <View style={estilos.spaceBOT}/>
+      <View style={estilos.spaceBOT} />
       <BotaoBanner
         titulo="Use seu cupom!"
         textoPreto="Cupons de desconto para"
         textoLaranja="primeira compra e clientes fiéis!"
         imagem={IconHalfButton2}
       />
-      <View style={estilos.spaceBOT}/>
-      <View style={estilos.spaceTOP} />
+      <View style={estilos.Separator} />
+      <Text style={estilos.QuestionTitle}>Nossa Obra de Arte, a Pizza...</Text>
       <Video
         ref={video}
         style={estilos.video}
-        source={{
-          uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-        }}
+        source={require("../../../assets/pizza_promo_video.mp4")}
         useNativeControls
-        resizeMode={ResizeMode.CONTAIN}
+        resizeMode="contain"
         isLooping
         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
-      />
+      ></Video>
       <View style={estilos.button}>
         <Button
           title={status.isPlaying ? "Pause" : "Play"}
@@ -106,6 +102,7 @@ export default function HomePage() {
           }
         />
       </View>
+      <View style={estilos.Separator} />
     </ScrollView>
   );
 }
@@ -173,11 +170,15 @@ const estilos = StyleSheet.create({
     padding: 20,
     paddingTop: 0,
   },
-    video: {
-      flex: 1,
-      alignSelf: 'stretch'
-    },
-    button: {
-      margin: 5
-    }
+  video: {
+    width: width,
+    height: 240,
+    alignSelf: 'stretch',
+    padding: 0,
+  },
+  button: {
+    margin: 5,
+    width: '30%',
+    alignSelf: "center",
+  }
   });
