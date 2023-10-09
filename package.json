@@ -26,7 +26,8 @@
     "react-native-svg-uri": "^0.0.1",
     "react-native-x-carousel": "^1.0.1",
     "react-tabs": "^6.0.1",
-    "undefined": "@expo-google-fonts/"
+    "undefined": "@expo-google-fonts/",
+    "expo-av": "~13.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

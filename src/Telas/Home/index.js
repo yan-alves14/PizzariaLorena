@@ -1,5 +1,8 @@
 import React from "react";
 import { ScrollView, Image, Dimensions, StyleSheet, View, Text } from "react-native";
+import React, { useRef } from "react";
+import { ScrollView, Image, Dimensions, StyleSheet, View, Button } from "react-native";
+import {Video, ResizeMode} from 'expo-av'
 import Carrossel from "./Components/Carrossel";
 
 import BgDelivery from "../../../assets/imgHome/fundo_btn.png";
@@ -24,6 +27,8 @@ export default function HomePage() {
     { id: "3", image: require("../../../assets/imgHome/carrossel3-512w.png") },
     // Adicione mais objetos de imagem conforme necessário
   ];
+  const video = React.useRef(null);
+  const [status, setStatus] = React.useState({})
 
   return (
     <ScrollView>
@@ -53,6 +58,7 @@ export default function HomePage() {
       ></Image>
       <View style={estilos.Separator} />
       <Text style={estilos.QuestionTitle}>Por que a Pizzaria Lorena?</Text>
+
       <Texto style={estilos.TextoDefault}>
         A Pizzaria Lorena é uma das melhores da região, destacando-se pelo seu
         atendimento, tradição, qualidade e profissionalidade de seus
@@ -78,6 +84,28 @@ export default function HomePage() {
         imagem={IconHalfButton2}
       />
       <View style={estilos.spaceBOT}/>
+      <View style={estilos.spaceTOP} />
+      <Video
+        ref={video}
+        style={estilos.video}
+        source={{
+          uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+        }}
+        useNativeControls
+        resizeMode={ResizeMode.CONTAIN}
+        isLooping
+        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+      />
+      <View style={estilos.button}>
+        <Button
+          title={status.isPlaying ? "Pause" : "Play"}
+          onPress={() =>
+            status.isPlaying
+              ? video.current.pauseAsync()
+              : video.current.playAsync()
+          }
+        />
+      </View>
     </ScrollView>
   );
 }
@@ -89,13 +117,13 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  spaceBOT:{
+  spaceBOT: {
     height: 30,
   },
   spaceTOP: {
     height: 30,
   },
-  TextoDefault:{
+  TextoDefault: {
     margin: '5%',
     marginTop: 0,
     marginBottom: 0,
@@ -107,13 +135,13 @@ const estilos = StyleSheet.create({
     color: '#000',
     fontWeight: '400',
   },
-  TextoTitle:{
+  TextoTitle: {
     marginLeft: '2%',
     marginRight: '2%',
-    marginHorizontal:'10%',
+    marginHorizontal: '10%',
     fontSize: 22,
     paddingLeft: 35,
-    fontWeight:'bold',
+    fontWeight: 'bold',
   },
   Separator: {
     width: 77,
@@ -144,5 +172,12 @@ const estilos = StyleSheet.create({
     textAlign: "center",
     padding: 20,
     paddingTop: 0,
-  }
-})
+  },
+    video: {
+      flex: 1,
+      alignSelf: 'stretch'
+    },
+    button: {
+      margin: 5
+    }
+  });
