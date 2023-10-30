@@ -20,6 +20,7 @@ import person from './assets/tabIcons/person.png';
 import personOutline from './assets/tabIcons/person-outline.png';
 import ticket from './assets/tabIcons/ticket.png';
 import ticketOutline from './assets/tabIcons/ticket-outline.png';
+import carrinho from './assets/carrinho.png'
 
 //mock
 import pizza from './mock/pizzaCdp.js'
@@ -99,9 +100,9 @@ function TabsMenu(){
           } else if (route.name === "TesteTelaSoProdutos") {
             // Substitua pelo ícone personalizado correspondente
             iconSource = focused ? ticket : ticketOutline;
-          } else if (route.name === "TesteTelaSoDesejo") {
+          } else if (route.name === "Carrinho") {
             // Substitua pelo ícone personalizado correspondente
-            iconSource = focused ? ticket : ticketOutline;
+            iconSource = focused ? carrinho : carrinho;
           } 
 
 
@@ -125,7 +126,7 @@ function TabsMenu(){
           <Image source={require('./path-to-your-image.png')} style={{ width: size, height: size, tintColor: color }}/>
         <Tab.Screen name="Contato" component={MenuContato} />*/}
       <Tab.Screen name="Perfil" component={MenuPerfil} />
-      <Tab.Screen name="TesteTelaSoDesejo" component={MenuCarrinho} />
+      <Tab.Screen name="Carrinho" component={MenuCarrinho} />
 
     </Tab.Navigator>
   );

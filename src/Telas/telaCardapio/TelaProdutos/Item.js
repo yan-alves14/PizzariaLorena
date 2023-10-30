@@ -28,62 +28,67 @@ export default function Item ({nome, descricao, preco, imagem}){
         setExpandir(!expandir);
         atualizaQtdeTotal(1);
     }
-    async function salveStorage(quantidade){
-        let pedidos = [];
-        try 
-        {
-            // Obter a lista atual de pedidos do AsyncStorage
+    async function salveStorage(quantidade, total) {
+        let pedidos = [];  // Inicializa pedidos como um array
+
+        try {
             const pedidosAntigos = await AsyncStorage.getItem('pedidos');
-            if(pedidosAntigos){
-                pedidos.push(JSON.parse(pedidosAntigos));
-            } 
-            console.log(pedidos.length);
-            console.log(pedidos);
 
-            if( pedidos )
-            {
-
-                let ultimoPedido = pedidos.find();
-                let ultimoPedidoId = ultimoPedido.id;
-
-                console.log(ultimoPedido);
-                console.log(ultimoPedidoId);
-
-                let pedido ={
-                    id: ultimoPedidoId + 1,
-                    nome: nome,
-                    preco: preco,
-                    descricao: descricao,
-                    qtde: quantidade,
-                }
-                // Adicionar o novo pedido à lista
-                pedidos.push(pedido);
-                
-                console.log(pedidos);
-                    // Salvar a lista atualizada de pedidos no AsyncStorage
-                //await AsyncStorage.setItem('pedidos', JSON.stringify(pedidos));
-                console.log('Pedido salvo com sucesso!');
-                }
-                else
-                {
-                    let pedidoNw ={
-                        id: 1,
-                        nome: nome,
-                        preco: preco,
-                        descricao: descricao,
-                        qtde: quantidade,
-                    }
-                    console.log(pedidoNw);
-                    // await AsyncStorage.setItem('pedidos', JSON.stringify(pedidoNw));
+        if (pedidosAntigos) {
+            // Se existirem pedidos antigos, convertemos para array
+            pedidos = JSON.parse(pedidosAntigos);
+      
+            // Certificamo-nos de que pedidos é um array, mesmo que tenha sido um objeto antes
+            if (!Array.isArray(pedidos)) {
+                pedidos = [pedidos];
             }
+        }
+
+        console.log('Pedidos existentes:', pedidos);
+        
+        if (pedidos.length !== 0) {
+            const ultimoPedido = pedidos[pedidos.length - 1];
+            const ultimoPedidoId = ultimoPedido.id;
+      
+            console.log('ID do último pedido:', ultimoPedidoId);
+      
+            const novoPedido = {
+                id: ultimoPedidoId + 1,
+                nome: nome,
+                preco: preco,
+                descricao: descricao,
+                qtde: quantidade,
+                vlTotal: total,
+            };
+
+            pedidos.push(novoPedido);
+
+            console.log('Novo pedido:', novoPedido);
+            console.log('BD atualizado:', pedidos);
+
+            await AsyncStorage.setItem('pedidos', JSON.stringify(pedidos));
+            console.log('Pedido salvo com sucesso!');
+        } else {
+            console.log('Novo item');
+            console.log('ID 1: ');
+
+            const pedidoNw = {
+                id: 1,
+                nome: nome,
+                preco: preco,
+                descricao: descricao,
+                qtde: quantidade,
+            };
+
+            console.log(pedidoNw);
+            await AsyncStorage.setItem('pedidos', JSON.stringify([pedidoNw]));
+        }
         } catch (error) {
             console.error('Erro ao salvar o pedido:', error);
         }
-
-        const veja = await AsyncStorage.getItem('pedidos');
-        const jj = pedidosAntigos ? JSON.parse(pedidosAntigos) : [];
-        console.log(jj);
-    };
+        //AsyncStorage.clear()
+        console.log('\n\n ===================\n\n');
+    }
 
     useEffect (() => 
     {
@@ -111,31 +116,31 @@ export default function Item ({nome, descricao, preco, imagem}){
         },[audioStatus]);
 
     return <> 
-        <TouchableOpacity style={estilos.produtos} onPress={inverterExpandir}>
-            <Texto style={estilos.nome}>{nome}</Texto>
-            <Texto style={estilos.descricao}>{descricao}</Texto>
+        <TouchableOpacity style={styles.produtos} onPress={inverterExpandir}>
+            <Texto style={styles.nome}>{nome}</Texto>
+            <Texto style={styles.descricao}>{descricao}</Texto>
             <Image source={imagem}></Image>
-            <Texto style={estilos.preco}>{ Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(preco) }</Texto>
+            <Texto style={styles.preco}>{ Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(preco) }</Texto>
         </TouchableOpacity>
         { expandir &&
-        <View style={estilos.listadesejos}>
-            <View style={estilos.posicao}>
+        <View style={styles.listadesejos}>
+            <View style={styles.posicao}>
                <Texto>Quantidade </Texto>
                <CampoInteiro valor={quantidade} acao={atualizaQtdeTotal}/>
             </View>
-            <View style={estilos.posicao}>
+            <View style={styles.posicao}>
                 <Texto>Total </Texto>
                 <Texto>{ Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(total) }</Texto>
             </View>
-            <Button title="Adicionar" onPress={()=>{setAudioStatus(!audioStatus); salveStorage(quantidade);}}/>
+            <Button title="Adicionar" onPress={()=>{setAudioStatus(!audioStatus); salveStorage(quantidade, total);}}/>
         </View>
         }
-        <View style={estilos.divisor}/>
+        <View style={styles.divisor}/>
     </>
 }
 
 
-const estilos = StyleSheet.create({
+const styles = StyleSheet.create({
     nome: {
         color: 'orange',
         fontWeight: 'bold',

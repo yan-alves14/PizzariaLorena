@@ -14,7 +14,7 @@
   "dependencies": {
     "@expo-google-fonts/great-vibes": "^0.2.3",
     "@expo-google-fonts/montserrat": "^0.2.3",
-    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "expo": "^49.0.7",

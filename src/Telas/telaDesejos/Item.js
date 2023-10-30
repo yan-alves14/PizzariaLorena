@@ -3,13 +3,42 @@ import { View, TextInput, Button, StyleSheet } from "react-native";
 
 import Texto from "../../Components/Texto";
 import CampoInteiro from "../../Components/CampoInteiro";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-export default function Item ({nome, descricao, preco, quantidade: qtdeInicial}){
+export default function Item ({id ,nome, descricao, preco, qtde: qtdeInicial}){
 
     const [quantidade, setQuantidade] = useState(qtdeInicial);
     const [total, setTotal] = useState(preco * qtdeInicial);
- 
+
+
+    const removeItem = async (idItem) => {
+        console.log(idItem);
+        const pedidosArray = [];
+        try {
+            const dadosProdutos = await AsyncStorage.getItem('pedidos');
+
+            if (dadosProdutos) {
+                let pedidosArray = JSON.parse(dadosProdutos);
+
+                if (!Array.isArray(pedidosArray)) {
+                    pedidosArray = [pedidosArray];
+                }
+                console.log(idItem);
+                console.log(pedidosArray);
+                const index = pedidosArray.findIndex(item => item.id === idItem);
+
+                if (index !== -1) {
+                    pedidosArray.splice(index, 1);
+                }
+                console.log(pedidosArray);
+                await AsyncStorage.setItem('pedidos', JSON.stringify(pedidosArray));
+                console.log('Produto removido com sucesso!');
+            }
+        } catch (error) {
+            console.error('Erro ao tentar puxar o pedido:', error);
+        }
+    };
 
     const calculaTotal = (quantidade) => {
         setTotal(quantidade * preco);
@@ -19,6 +48,8 @@ export default function Item ({nome, descricao, preco, quantidade: qtdeInicial})
         setQuantidade(novaQtde);
         calculaTotal(novaQtde);
     }
+
+   
 
     return <> 
         <View style={estilos.produtos} >
@@ -36,7 +67,7 @@ export default function Item ({nome, descricao, preco, quantidade: qtdeInicial})
                 <Texto>Total </Texto>
                 <Texto>{ Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(total) }</Texto>
             </View>
-            <Button title="Remover"/>
+            <Button title="Remover" onPress={() => removeItem(id)}/>
         </View>
         }
         <View style={estilos.divisor}/>

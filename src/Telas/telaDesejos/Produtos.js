@@ -1,47 +1,97 @@
-import React from "react";
-import { FlatList, SafeAreaView } from "react-native";
+import React,{useState, useEffect} from "react";
+import { FlatList, SafeAreaView, View, Image, StyleSheet,TouchableOpacity } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Texto from "../../Components/Texto";
 import Item from './Item';
 import StatusListaDesejo from "../../Components/statusCarrinho/index"
-
-
-const produtos=[
-    {
-        id: 1,
-        nome: "CESTA INVERNO",
-        preco: 79.9,
-        descricao: "Cesta de frutas típicas do inverno!",
-        quantidade: 1,
-    },
-    {
-        id: 2,
-        nome: "CESTA VERÃO",
-        preco: 89.9,
-        descricao: "Cesta de frutas típicas do verão!",
-        quantidade: 2,
-    },
-    {
-        id: 3,
-        nome: "CESTA ESTAÇÕES",
-        preco: 99.9,
-        descricao: "Uma cesta com frutas da estação vigente.",
-        quantidade: 5,
-    }
-];
+import atualizar from "../../../assets/imgCarrinho/atualizar.png"
+import { Button } from "react-native";
 
 export default function listaDesejos (){
+    const [produto, setProduto] = useState([]);
+    const [total, setTotal] = useState(0);
+    
+    async function concluir () {
+        try{
+        AsyncStorage.clear();
+        console.log("Pedido concluido");
+        }
+        catch(error)
+        {
+            console.log("erro ao concluir o pedido: " + error)
+        }
+    }
 
-const total = produtos.reduce((soma, {preco, quantidade}) => soma + (preco * quantidade), 0);
+    const obtemProduto = async () => {
+        try {
+            const dadosProdutos = await AsyncStorage.getItem('pedidos');
 
+            if (dadosProdutos) {
+                let pedidosArray = JSON.parse(dadosProdutos);
+
+                if (!Array.isArray(pedidosArray)) {
+                    pedidosArray = [pedidosArray];
+                }
+
+                setProduto(pedidosArray);
+
+                let soma = 0;
+                pedidosArray.forEach(produto => {
+                    soma += produto.preco * produto.qtde;
+                });
+
+                setTotal(soma);
+            }else{
+                let pedidosArray = []
+                setProduto(pedidosArray);
+                setTotal(0)
+            }
+        } catch (error) {
+            console.error('Erro ao tentar puxar o pedido:', error);
+        }
+    };
+
+    useEffect(() => {
+        obtemProduto();
+    }, []);
+
+    const recarregar = () => {
+        // Função para recarregar os dados
+        obtemProduto();
+    };
+
+    // const total = pedidos.reduce((soma, {preco, qtde}) => soma + (preco * qtde), 0);
+    console.log(typeof total)
+    console.log("total: ", total, "\n\n=========");
+
+    console.log("pedidos: ", produto)
     return <SafeAreaView>
-        <StatusListaDesejo total ={total} />
+            <TouchableOpacity onPress={recarregar}>
+                <Image style={styles.atualiza} source={atualizar} />
+            </TouchableOpacity>
+            <View style={styles.botao}>
+                <Button title= "Concluir pedido" onPress={() => concluir()}/>
+            </View>
+            <StatusListaDesejo total={total} />
             <FlatList
-                data={produtos}
-                renderItem={({item})=>(<Item {...item}/>)}
-                keyExtractor={({id})=>(String(id))}
+                data={produto}
+                renderItem={({ item }) => (<Item {...item} />)}
+                keyExtractor={({ id }) => (String(id))}
             />
-        </SafeAreaView>
+            </SafeAreaView>
+        
 }
 
 
+const styles = StyleSheet.create({
+    atualiza:{
+        width: 50,
+        height: 50,
+        marginLeft: 300,
+        marginTop: -20,
+        marginBottom: 10
+        // transform: [{ scale: 0.1 }],
+    }
+
+});
