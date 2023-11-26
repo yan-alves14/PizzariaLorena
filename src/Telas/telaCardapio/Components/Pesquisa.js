@@ -10,6 +10,11 @@ function BarraPesquisa({ onPesquisa }) {
         onPesquisa(termoPesquisa);
     };
 
+    const atualiza = (novoValor, acaoRetorno) =>{
+        const verificaInteiro = novoValor.match();
+        if(!verificaInteiro) return;
+    }
+
     return (
         <View style={styles.barraPesquisa}>
             <Image source={lupa} style={styles.iconeLupa}></Image>
