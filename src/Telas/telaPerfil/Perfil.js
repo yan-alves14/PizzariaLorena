@@ -3,13 +3,20 @@ import React, { useState, useEffect } from "react";
 import { Image, ScrollView, Button, TouchableOpacity, Text, View, StyleSheet, Dimensions } from "react-native";
 import { Camera, CameraType } from 'expo-camera';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
+import CadastraEnderecoPage from "./telasBtn/telaEndereco/telaCadastroEndereco"
+
+import localiza from "../../../assets/imgPerfil/localizacao.png"
 import perfilImg from "../../../assets/imgPerfil/perfilImg1.png";
 import Texto from "../../Components/Texto";
+import { SafeAreaView } from "react-native";
 
-const widthTela = (Dimensions.get('screen').width) / 1.5;
+const widthTela = (Dimensions.get('screen').width) / 1.7;
 const heightTela = widthTela;
 export default function HomePage({ nomePerfil, listaOpcoes }) {
+    const navigation = useNavigation();
+
     const [type, setType] = useState(CameraType.back);
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const [capturedImage, setCapturedImage] = useState(null);
@@ -66,7 +73,9 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
     function cancelar(){
       setShowCamera(!showCamera);
     }
-
+    function telaCadastroEndereco(){
+      navigation.navigate(' ');
+    }
     return (
         <View>
             {showCamera ? (
@@ -104,8 +113,17 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
                             <Text>Olá, {nomePerfil}</Text>
                         </View>
                     </View>
-        
+                    <View style={styles.spaceTOP} />
+                    <TouchableOpacity style={styles.btnCadatroEntrega} onPress={telaCadastroEndereco}>
+                        <View>
+                          <Image source={localiza} style={styles.image}></Image>
 
+                          <Text style={styles.titleEnde}>Endereço</Text>
+                          <Text style={styles.paragraph}>
+                            
+                          </Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             )}
         </View>
@@ -113,6 +131,42 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
 }
 
 const styles = StyleSheet.create({
+  image:{
+    marginTop: "10%",
+    marginLeft:"10%",
+    marginRight:"10%",
+    height: "60%",
+    width: "80%"
+  },
+  titleEnde:{
+    
+    paddingTop: "10%",
+  },
+  btnCadatroEntrega:{
+
+    idth: "77%",
+    height: 100,
+    backgroundColor: "#eaeaea",
+    borderRadius: 35,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#d7d7d7",
+    borderWidth: 1,
+    flexDirection: "row",
+    alignSelf: "center",
+    padding: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 10, // Adiciona sombra no Android
+  },
+  spaceTOP: {
+    height: 30,
+  },
   buttonContainer: {
     marginLeft: '5%',
     flexDirection: 'row',
@@ -139,6 +193,7 @@ const styles = StyleSheet.create({
   },
   conteinerPerfil: {
       display: 'flex',
+   
   },
   containerTirarFoto: {
       display: 'flex'
@@ -165,228 +220,3 @@ const styles = StyleSheet.create({
 
 
 
-
-
-// import React, {useState,  useEffect}  from "react";
-// import { Image, ScrollView, Button , TouchableOpacity, Text, View, StyleSheet, Dimensions } from "react-native";
-// import { Camera, CameraType } from 'expo-camera';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-
-// import perfilImg from "../../../assets/imgPerfil/perfilImg1.png";
-// import Texto from "../../Components/Texto";
-
-// const widthTela = (Dimensions.get('screen').width) / 1.5;
-// const heightTela = widthTela ;
-// export default function HomePage({nomePerfil, listaOpcoes }) {
-//   const [type, setType] = useState(CameraType.back);
-//   const [permission, requestPermission] = Camera.useCameraPermissions();
-//   const [capturedImage, setCapturedImage] = useState(null);
-//   const [cameraVisible, setCameraVisible] = useState(true);
-
-//   const cameraRef = React.useRef(null);
-//     if (!permission) {
-//         return <View />;
-//     }
-    
-//     if (!permission.granted) {
-//         return (
-//         <View style={styles.container}>
-//             <Text style={{ textAlign: 'center' }}>Por favor, autorize a utilização da sua camera.</Text>
-//             <Button onPress={requestPermission} title="Autorizar o uso da camera" />
-//         </View>
-//         );
-//     }
-    
-//     const tirarFoto = async () => {
-//         if (cameraRef.current) {
-//             const { uri } = await cameraRef.current.takePictureAsync();
-//             console.log("tirou foto");
-//             setCapturedImage(uri);
-//             console.log(uri);
-//            //Guarda a imagem no AsyncStorage
-//             await AsyncStorage.setItem('Foto', uri);
-//             setCameraVisible(false);
-//         }
-        
-//     }
-    
-//     function toggleCameraType() {
-//         setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-//     }
-
-//     function liberarCamera() {
-//       setCapturedImage(null); // Limpar a imagem capturada
-//       setCameraVisible(true); // Mostrar a câmera novamente
-//     }
-
-
-//     return (
-//       <View>
-//         {/* {cameraVisible ? ( */}
-//         {capturedImage ? (
-          
-//           <View style={styles.containerTirarFoto}>
-//             <Camera style={styles.camera} type={type} ref={cameraRef}>
-//               <View></View>
-//             </Camera>
-//             {capturedImage && (
-//               <Image source={{ uri: capturedImage }} style={styles.fotoTirada}></Image>
-//             )}
-//             <View style={styles.buttonContainer}>
-//               <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-//                 <Text style={styles.text}>Alternar Camera</Text>
-//               </TouchableOpacity>
-//               <TouchableOpacity style={styles.button} onPress={tirarFoto}>
-//                 <Text style={styles.text}>Tirar Foto</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//         ) : (
-//           <View style={styles.conteinerPerfil}>
-//             <View style={styles.telaPerfil}>
-//               <TouchableOpacity onPress={liberarCamera}>
-//                 <Image
-//                   source={
-//                     capturedImage ? { uri: capturedImage } : perfilImg
-//                   }
-//                   style={styles.portraideImage}
-//                 ></Image>
-//               </TouchableOpacity>
-//               <View style={styles.nomePerfil}>
-//                 <Text>Olá, {nomePerfil}</Text>
-//               </View>
-//             </View>
-//           </View>
-//         )}
-//       </View>
-//     );
-//   }
-
-
-//     return (
-        
-//         <View>
-//             <View  style={styles.containerTirarFoto}>
-//                 <Camera style={styles.camera} type={type} ref={cameraRef}>
-//                     <View>
-
-//                     </View>
-//                 </Camera>
-//                 {capturedImage && <Image source={{uri: capturedImage}} style={styles.fotoTirada}></Image>}
-//                 <View style={styles.buttonContainer}>
-//                     <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-//                         <Text style={styles.text}>Alternar Camera</Text>
-//                     </TouchableOpacity>
-//                     <TouchableOpacity style={styles.button} onPress={tirarFoto}>
-//                         <Text style={styles.text}>Tirar Foto</Text>
-//                     </TouchableOpacity>
-//                 </View>
-//             </View>
-//             {/* Perfil in */}
-//             <View style={styles.conteinerPerfil}>
-//                 <View style={styles.telaPerfil}>
-//                     <TouchableOpacity onPress={liberarCamera}>
-//                         <Image source={ capturedImage ? { uri: capturedImage } : perfilImg } style={styles.portraideImage}></Image>
-//                     </TouchableOpacity>
-//                     <View style={styles.nomePerfil}>
-//                         <Text>Olá, {nomePerfil}</Text>
-//                     </View>
-//                 </View>
-//             </View>
-//         </View> 
-
-//     );
-// }
-
-// const styles = StyleSheet.create({
-//     fotoTirada:{
-//         flex: 1,
-//         height: '40%'
-//     },
-    
-//     text:{
-//         color: 'red',
-//     },
-//     camera:{
-//         height: '70%',
-//         width: '100%'
-//     },
-//     telaPerfil:{
-//         alignItems: "center",
-//         justifyContent: "center",
-//         marginTop: "10%",
-//     },
-//     portraideImage:{
-//         width: widthTela,
-//         height: heightTela,
-//         borderRadius: 1360,
-//     }
-// });
-{/* <View style={styles.telaPerfil}>Elemento da imagemd de perfil
-                <Image source={perfilImg} style={styles.portraideImage}></Image>
-                <View style={styles.nomePerfil}>
-                    <Texto>Olá, {nomePerfil}</Texto>
-                </View>
-            </View> */}
-
-
-/*
-import React, {useState,  useEffect} from 'react';
-import { View, StyleSheet, Image, Button , TouchableOpacity, Text} from 'react-native';
-import { Camera, CameraType } from 'expo-camera';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-export default function Camera() {
-
-  //CAMERA
-  const [type, setType] = useState(CameraType.back);
-  const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [capturedImage, setCapturedImage] = useState(null);
-  const cameraRef = React.useRef(null);
-
-  if (!permission) {
-    return <View />;
-  }
-
-  if (!permission.granted) {
-    return (
-      <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>Por favor, autorize a utilização da sua camera.</Text>
-        <Button onPress={requestPermission} title="Autorizar o uso da camera" />
-      </View>
-    );
-  }
-
-  const tirarFoto = async () => {
-    if (cameraRef.current) {
-      const { uri } = await cameraRef.current.takePictureAsync();
-      console.log("tirou foto");
-      setCapturedImage(uri);
-      console.log(uri);
-      //Guarda a imagem no AsyncStorage
-      await AsyncStorage.setItem('Foto', uri);
-    }
-  }
-
-  function toggleCameraType() {
-    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-  }
-
-  return (
-    <View style={styles.container}>
-      <Camera style={styles.camera} type={type} ref={cameraRef}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Alternar Camera</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={tirarFoto}>
-            <Text style={styles.text}>Tirar Foto</Text>
-          </TouchableOpacity>
-        </View>
-      </Camera>
-      {capturedImage && <Image source={{uri: capturedImage}} style={{flex: 1}}></Image>}
-    </View>
-  );
-} 
-
-*/

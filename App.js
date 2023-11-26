@@ -2,7 +2,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
-import { SafeAreaView, View, Image, StatusBar} from 'react-native';
+import { SafeAreaView, View, Image, StatusBar, StyleSheet} from 'react-native';
 import {
   useFonts,
   Montserrat_400Regular,
@@ -37,7 +37,7 @@ import Cupom from './src/Telas/telaCupom/Cupom.js';
 import Contato from './src/Telas/telaContato/Contato.js';
 import Perfil from './src/Telas/telaPerfil/Perfil.js';
 import Desejos from './src/Telas/telaDesejos/Produtos';
-
+import MenuEndereco from './src/Telas/telaPerfil/telasBtn/telaEndereco/telaCadastroEndereco.js'
 function MenuHome(){
   return <SafeAreaView>
             <HomePage/>
@@ -127,7 +127,7 @@ function TabsMenu(){
         <Tab.Screen name="Contato" component={MenuContato} />*/}
       <Tab.Screen name="Perfil" component={MenuPerfil} />
       <Tab.Screen name="Carrinho" component={MenuCarrinho} />
-
+      <Tab.Screen name=" " component={MenuEndereco} options={{ tabBarButton: () => null }}/>
     </Tab.Navigator>
   );
 }
@@ -152,3 +152,10 @@ const [ fonteCarregada ] = useFonts({
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  endereco:{
+    display: 'none',
+  }
+
+})
