@@ -5,8 +5,9 @@ import axios from "axios";
 const getAddress = async (cep) => {
     try {
         const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-        const data = response.data;
-        return `CEP: ${data.cep}, Logradouro: ${data.logradouro}, Bairro: ${data.bairro}, Cidade: ${data.localidade}, Estado: ${data.uf}`;
+        
+        return data = response.data;
+        
     } catch (error) {
         console.log("Erro na requisição: ", error);
         return "CEP não encontrado";
