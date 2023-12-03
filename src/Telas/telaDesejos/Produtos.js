@@ -71,7 +71,7 @@ export default function listaDesejos (){
                 <Image style={styles.atualiza} source={atualizar} />
             </TouchableOpacity>
             <View style={styles.botao}>
-                <Button title= "Concluir pedido" onPress={() => concluir()}/>
+                <Button color="#ffa841" title= "Concluir pedido" onPress={() => concluir()}/>
             </View>
             <StatusListaDesejo total={total} />
             <FlatList

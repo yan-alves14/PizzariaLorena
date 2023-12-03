@@ -1,15 +1,71 @@
 import React, { useState, useEffect } from "react";
 import { TouchableOpacity, View, Text, TextInput, Button, StyleSheet } from "react-native";
-import getAddress from "../../../../Services/GetCEP";
+import getAddress from "../../Services/GetCEP";
 
-export default function CadastraEnderecoPage({ nomePerfil, listaOpcoes }) {
+export default function CadastraEnderecoPage() {
     const [cep, setCep] = useState("");
     const [address, setAddress] = useState({});
 
     async function fetchAddress() {
         const result = await getAddress(cep);
         setAddress(result);
+        console.log(address);
+        console.log(result);
     }
+
+    async function addEndereco(complemento){
+        const dadosEnde = await AsyncStorage.getItem('endereco');
+
+        if (dadosEnde) {
+            let EndeArray = JSON.parse(dadosEnde);
+
+            if (!Array.isArray(EndeArray)) {
+                EndeArray = [EndeArray];
+            }
+        }
+        if (endereco.length !== 0) {
+            console.log('ID do último pedido:', ultimoPedidoId);
+
+            const novoEndereco = {
+                bairro: address.bairro,
+                localidade: address.localidade,
+                logradouro: address.logradouro,
+                uf: address.uf,
+                complemento: complemento
+            };
+
+            endereco.push(novoEndereco);
+
+            await AsyncStorage.setItem('endereco', JSON.stringify(endereco));
+        }
+    }
+
+    const obtemEnde = async () => {
+        try {
+            const dadosEnde = await AsyncStorage.getItem('endereco');
+
+            if (dadosEnde) {
+                let EndeArray = JSON.parse(dadosEnde);
+
+                if (!Array.isArray(EndeArray)) {
+                    EndeArray = [EndeArray];
+                }
+
+                setAddress(EndeArray);
+
+            }else{
+                let EndeArray = []
+                setAddress(EndeArray);
+            
+            }
+        } catch (error) {
+            console.error('Erro ao tentar puxar o pedido:', error);
+        }
+    };
+
+    useEffect(() => {
+       //obtemEnde();
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -18,7 +74,7 @@ export default function CadastraEnderecoPage({ nomePerfil, listaOpcoes }) {
                     <TextInput placeholder="Digite o seu CEP" value={cep} onChangeText={text => setCep(text)} keyboardType="numeric" />
                 </View>
                 <TouchableOpacity style={styles.btnBuscaCep} onPress={fetchAddress}>
-                    <Text style={styles.btnText}> Buscar endereço</Text>
+                    <Text style={styles.btnText}>Buscar endereço</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.hrL}></View>

@@ -5,8 +5,8 @@ import { Camera, CameraType } from 'expo-camera';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
-import CadastraEnderecoPage from "./telasBtn/telaEndereco/telaCadastroEndereco"
 
+import carrinho from '../../../assets/carrinho.png'
 import cartao from "../../../assets/imgPerfil/cartao.png"
 import config from "../../../assets/imgPerfil/config.png"
 import localiza from "../../../assets/imgPerfil/localizacao.png"
@@ -76,8 +76,15 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
       setShowCamera(!showCamera);
     }
     function telaCadastroEndereco(){
-      navigation.navigate(' ');
+      navigation.navigate('Endereco');
     }
+    function telaCarrinho(){
+      navigation.navigate('Carrinho');
+    }
+    function telaConfig(){
+      navigation.navigate('Config');
+    }
+
     return (
         <View>
             {showCamera ? (
@@ -112,7 +119,7 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
                             <Image source={capturedImage ? { uri: capturedImage } : perfilImg} style={styles.portraideImage}></Image>
                         </TouchableOpacity>
                         <View style={styles.nomePerfil}>
-                            <Text>Olá, {nomePerfil}</Text>
+                            <Text></Text>
                         </View>
                     </View>
                     <View style={styles.spaceTOP} />
@@ -125,18 +132,19 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
                         </View>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style={styles.btnTrocaTela} /*onPress={telaCadastroEndereco}*/>
+                    <TouchableOpacity style={styles.btnTrocaTela} onPress={telaConfig}>
                         <View>
                           <Image source={config} style={styles.image}></Image>
                           <Text style={styles.titleConfig}>Configuração</Text>
                           <Text style={styles.paragraph}></Text>
                         </View>
                     </TouchableOpacity>
-                    
-                    <TouchableOpacity style={styles.btnTrocaTela} /*onPress={telaCadastroEndereco}*/>
+
+
+                    <TouchableOpacity style={styles.btnTrocaTela} onPress={telaCarrinho}>
                         <View>
-                          <Image source={cartao} style={styles.image}></Image>
-                          <Text style={styles.titlePaga}>Pagamentos</Text>
+                          <Image source={carrinho} style={styles.imageCar}></Image>
+                          <Text style={styles.titleEnde}>Carrinho</Text>
                           <Text style={styles.paragraph}></Text>
                         </View>
                     </TouchableOpacity>
@@ -148,6 +156,13 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
 }
 
 const styles = StyleSheet.create({
+  imageCar:{
+    marginTop: "15%",
+    marginLeft:"10%",
+    marginRight:"10%",
+    height: "70%",
+    width: "70%"
+  },
   image:{
     marginTop: "10%",
     marginLeft:"10%",
@@ -197,7 +212,12 @@ const styles = StyleSheet.create({
     elevation: 10, // Adiciona sombra no Android
   },
   spaceTOP: {
-    height: 30,
+    borderColor: '#DCDCDC',
+    //borderWidth: 1,
+    borderBottomWidth: 1,
+    height: 0,
+    margin: 15,
+
   },
   buttonContainer: {
     marginLeft: '5%',
