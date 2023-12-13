@@ -20,7 +20,6 @@ import person from './assets/tabIcons/person.png';
 import personOutline from './assets/tabIcons/person-outline.png';
 import ticket from './assets/tabIcons/ticket.png';
 import ticketOutline from './assets/tabIcons/ticket-outline.png';
-import carrinho from './assets/carrinho.png'
 
 //mock
 import pizza from './mock/pizzaCdp.js'
@@ -37,7 +36,9 @@ import Cupom from './src/Telas/telaCupom/Cupom.js';
 import Contato from './src/Telas/telaContato/Contato.js';
 import Perfil from './src/Telas/telaPerfil/Perfil.js';
 import Desejos from './src/Telas/telaDesejos/Produtos';
-import MenuEndereco from './src/Telas/telaPerfil/telasBtn/telaEndereco/telaCadastroEndereco.js'
+import Endereco from './src/Telas/telaEndereco/telaCadastroEndereco.js'
+import Config from './src/Telas/telaConfig/telaConfiguracoes.js'
+
 function MenuHome(){
   return <SafeAreaView>
             <HomePage/>
@@ -100,10 +101,11 @@ function TabsMenu(){
           } else if (route.name === "TesteTelaSoProdutos") {
             // Substitua pelo ícone personalizado correspondente
             iconSource = focused ? ticket : ticketOutline;
-          } else if (route.name === "Carrinho") {
-            // Substitua pelo ícone personalizado correspondente
-            iconSource = focused ? carrinho : carrinho;
-          } 
+          }
+            // } else if (route.name === "Carrinho") {
+          //   // Substitua pelo ícone personalizado correspondente
+          //   iconSource = focused ? carrinho : carrinho;
+          // } 
 
 
 
@@ -126,8 +128,10 @@ function TabsMenu(){
           <Image source={require('./path-to-your-image.png')} style={{ width: size, height: size, tintColor: color }}/>
         <Tab.Screen name="Contato" component={MenuContato} />*/}
       <Tab.Screen name="Perfil" component={MenuPerfil} />
-      <Tab.Screen name="Carrinho" component={MenuCarrinho} />
-      <Tab.Screen name=" " component={MenuEndereco} options={{ tabBarButton: () => null }}/>
+      <Tab.Screen name="Carrinho" component={MenuCarrinho} options={{ tabBarButton: () => null }}/>
+      <Tab.Screen name="Endereco" component={Endereco} options={{ tabBarButton: () => null }}/>
+      <Tab.Screen name="Config" component={Config} options={{ tabBarButton: () => null }}/>
+
     </Tab.Navigator>
   );
 }

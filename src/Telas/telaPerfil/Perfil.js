@@ -5,8 +5,10 @@ import { Camera, CameraType } from 'expo-camera';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
-import CadastraEnderecoPage from "./telasBtn/telaEndereco/telaCadastroEndereco"
 
+import carrinho from '../../../assets/carrinho.png'
+import cartao from "../../../assets/imgPerfil/cartao.png"
+import config from "../../../assets/imgPerfil/config.png"
 import localiza from "../../../assets/imgPerfil/localizacao.png"
 import perfilImg from "../../../assets/imgPerfil/perfilImg1.png";
 import Texto from "../../Components/Texto";
@@ -74,8 +76,15 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
       setShowCamera(!showCamera);
     }
     function telaCadastroEndereco(){
-      navigation.navigate(' ');
+      navigation.navigate('Endereco');
     }
+    function telaCarrinho(){
+      navigation.navigate('Carrinho');
+    }
+    function telaConfig(){
+      navigation.navigate('Config');
+    }
+
     return (
         <View>
             {showCamera ? (
@@ -110,20 +119,36 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
                             <Image source={capturedImage ? { uri: capturedImage } : perfilImg} style={styles.portraideImage}></Image>
                         </TouchableOpacity>
                         <View style={styles.nomePerfil}>
-                            <Text>Olá, {nomePerfil}</Text>
+                            <Text></Text>
                         </View>
                     </View>
                     <View style={styles.spaceTOP} />
-                    <TouchableOpacity style={styles.btnCadatroEntrega} onPress={telaCadastroEndereco}>
+                    <View style={styles.gridTemplate}>
+                    <TouchableOpacity style={styles.btnTrocaTela} onPress={telaCadastroEndereco}>
                         <View>
                           <Image source={localiza} style={styles.image}></Image>
-
                           <Text style={styles.titleEnde}>Endereço</Text>
-                          <Text style={styles.paragraph}>
-                            
-                          </Text>
+                          <Text style={styles.paragraph}></Text>
                         </View>
                     </TouchableOpacity>
+                    
+                    <TouchableOpacity style={styles.btnTrocaTela} onPress={telaConfig}>
+                        <View>
+                          <Image source={config} style={styles.image}></Image>
+                          <Text style={styles.titleConfig}>Configuração</Text>
+                          <Text style={styles.paragraph}></Text>
+                        </View>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity style={styles.btnTrocaTela} onPress={telaCarrinho}>
+                        <View>
+                          <Image source={carrinho} style={styles.imageCar}></Image>
+                          <Text style={styles.titleEnde}>Carrinho</Text>
+                          <Text style={styles.paragraph}></Text>
+                        </View>
+                    </TouchableOpacity>
+                    </View>
                 </View>
             )}
         </View>
@@ -131,6 +156,13 @@ export default function HomePage({ nomePerfil, listaOpcoes }) {
 }
 
 const styles = StyleSheet.create({
+  imageCar:{
+    marginTop: "15%",
+    marginLeft:"10%",
+    marginRight:"10%",
+    height: "70%",
+    width: "70%"
+  },
   image:{
     marginTop: "10%",
     marginLeft:"10%",
@@ -142,9 +174,23 @@ const styles = StyleSheet.create({
     
     paddingTop: "10%",
   },
-  btnCadatroEntrega:{
+  titlePaga:{
+    fontSize: 10,
+    paddingTop: "10%"
+  },
+  titleConfig:{
+    fontSize: 10,
+    paddingTop: "10%",
+  },
+  gridTemplate: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between', // Isso vai distribuir os botões uniformemente
+    marginHorizontal: '5%',
+  },
 
-    idth: "77%",
+  btnTrocaTela: {
+    width: '30%', // Ajuste conforme necessário
     height: 100,
     backgroundColor: "#eaeaea",
     borderRadius: 35,
@@ -155,6 +201,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     padding: 15,
+    marginVertical: 10, // Adicione um espaçamento vertical entre os botões
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -165,7 +212,12 @@ const styles = StyleSheet.create({
     elevation: 10, // Adiciona sombra no Android
   },
   spaceTOP: {
-    height: 30,
+    borderColor: '#DCDCDC',
+    //borderWidth: 1,
+    borderBottomWidth: 1,
+    height: 0,
+    margin: 15,
+
   },
   buttonContainer: {
     marginLeft: '5%',
